@@ -67,7 +67,8 @@ public class Menu {
 			out.println("(" + optionNum + ") " + options[i]);
 		}
 		out.println();
-		out.println("Current Money Provided: " + "$" + money);
+		out.printf("Current balance is $%.2f", money);
+
 		out.println();
 		out.print(System.lineSeparator() + "Please choose an option >>> ");
 		out.flush();

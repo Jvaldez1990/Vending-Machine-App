@@ -18,6 +18,10 @@ public abstract class Snack {
 
     public abstract String printout();
 
+    public int removeOneItem() {
+        return remainingQuantity -= 1;
+    }
+
 
     public String getName() {
         return name;
@@ -38,10 +42,6 @@ public abstract class Snack {
         return location;
     }
 
-
-//	public void setLocation(String location) {
-//		this.location = location;
-//	}
 
 
 
