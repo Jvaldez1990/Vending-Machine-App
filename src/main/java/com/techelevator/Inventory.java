@@ -92,7 +92,12 @@ public class Inventory {
         return snackMap.containsKey(code);
     }
 
-    public void giveChange() {
+    public Map<String, Snack> getSnackMap() {
+        return snackMap;
+    }
+
+    public String giveChange() {
+        String changeString;
         int quarters = 0;
         int dimes = 0;
         int nickels = 0;
@@ -110,8 +115,10 @@ public class Inventory {
             }
         }
         System.out.println();
+        changeString = "Change returned is " + quarters + " quarters, " + dimes + " dimes, " + nickels + " nickels.";
         System.out.println("Change returned is " + quarters + " quarters, " + dimes + " dimes, " + nickels + " nickels.");
-        System.exit(1);
+        return changeString;
+        //System.exit(1);
     }
 
     public void displayInventoryInConsole() {

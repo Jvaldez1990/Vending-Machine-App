@@ -69,6 +69,7 @@ public class VendingMachineCLI {
 						//return change in coins and exit
 						VMLog.ChangeLog(0, money);
 						inventoryStock.giveChange();
+						System.exit(1);
 					}
 				}
 
