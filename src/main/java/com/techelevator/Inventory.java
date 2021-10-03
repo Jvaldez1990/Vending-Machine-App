@@ -49,32 +49,28 @@ public class Inventory {
     }
 
     public Map<String,Snack> interactWithInventory(String code) {
-            if (!snackMap.containsKey(code.toUpperCase())){
-                System.out.println();
-                System.out.println("Invalid item code");
-                System.out.println();
-            }
-            else if (snackMap.get(code.toUpperCase()).getRemainingQuantity() < 1) {
-                System.out.println();
-                System.out.println("SOLD OUT");
-                System.out.println();
-            }
-            else if (money < snackMap.get(code.toUpperCase()).getPrice()) {
-                System.out.println();
-                System.out.println("Not enough money");
-                System.out.println();
-            }
-            else if (money >= snackMap.get(code.toUpperCase()).getPrice()) {
+        try {
+            if (!snackMap.containsKey(code.toUpperCase())) {
+                throw new IllegalArgumentException("Not a valid key");
+            } else if (snackMap.get(code.toUpperCase()).getRemainingQuantity() < 1) {
+                throw new NumberFormatException("Sold Out");
+            } else if (money < snackMap.get(code.toUpperCase()).getPrice()) {
+                throw new NumberFormatException("Not enough money");
+            } else if (money >= snackMap.get(code.toUpperCase()).getPrice()) {
                 subMoney(snackMap.get(code.toUpperCase()).getPrice());
                 System.out.println();
                 System.out.printf(snackMap.get(code.toUpperCase()).getName() + " " + snackMap.get(code.toUpperCase()).getPrice()
-                + " $%.2f", money);
+                        + " $%.2f", money);
                 System.out.println();
                 System.out.println(snackMap.get(code.toUpperCase()).printout()); // unique item message
                 snackMap.get(code.toUpperCase()).removeOneItem(); // remove 1 object from inventory
                 System.out.println();
-                VMLog.SaleLog(snackMap.get(code.toUpperCase()).getName(), code.toUpperCase() , money, money-snackMap.get(code.toUpperCase()).getPrice());
+                VMLog.SaleLog(snackMap.get(code.toUpperCase()).getName(), code.toUpperCase(), money, money - snackMap.get(code.toUpperCase()).getPrice());
             }
+        } catch (IllegalArgumentException e) {
+            System.err.println(e);
+        }
+
         return snackMap;
     }
 

@@ -70,7 +70,7 @@ public class VendingMachineCLI {
 							System.out.println();
 							System.out.println("Enter item code: ");
 							String desiredItemCode = scan.next();
-							
+
 							inventoryStock.interactWithInventory(desiredItemCode);
 
 							if (!inventoryStock.hasKey(desiredItemCode) ||
