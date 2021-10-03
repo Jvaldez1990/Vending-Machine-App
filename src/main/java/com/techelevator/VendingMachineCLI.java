@@ -39,27 +39,27 @@ public class VendingMachineCLI {
 				//display purchase menu loop
 				while (true) {
 					double money = inventoryStock.getMoney();
-					String PurchaseMenuChoice = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS, money);
-					if (PurchaseMenuChoice.equals(PURCHASE_MENU_FEED_MONEY)) {
-						//Feed Money loop
-						while (true) {
-							System.out.println();
-							System.out.println("Insert Cash | Press 0 or enter to go back");
-							int inputCash = 0;
-							String inputCashString = scan.nextLine();
+							String PurchaseMenuChoice = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS, money);
+							if (PurchaseMenuChoice.equals(PURCHASE_MENU_FEED_MONEY)) {
+								//Feed Money loop
+								while (true) {
+									System.out.println();
+									System.out.println("Insert Cash | Press 0 or enter to go back");
+									int inputCash = 0;
+									String inputCashString = scan.nextLine();
 
-							if (inputCashString.equalsIgnoreCase("0") || inputCashString.isEmpty())
-								break;
-							try {
-								 inputCash = Integer.parseInt(inputCashString);
-								 if (!(inputCash == 1) && !(inputCash == 2) && !(inputCash == 5) && !(inputCash == 10) && !(inputCash == 20)){
-								 	throw new IllegalArgumentException("Unrealistic dollar value");
-								 }
-								inventoryStock.addMoney(inputCash);
-							}
-							catch (NumberFormatException e) {
-								System.err.println("Not an whole number");
-							} catch (IllegalArgumentException e) {
+									if (inputCashString.equalsIgnoreCase("0") || inputCashString.isEmpty())
+										break;
+									try {
+										inputCash = Integer.parseInt(inputCashString);
+										if (!(inputCash == 1) && !(inputCash == 2) && !(inputCash == 5) && !(inputCash == 10) && !(inputCash == 20)){
+											throw new IllegalArgumentException("Unrealistic dollar value");
+										}
+										inventoryStock.addMoney(inputCash);
+									}
+									catch (NumberFormatException e) {
+										System.err.println("Not an whole number");
+									} catch (IllegalArgumentException e) {
 								System.err.println(e);
 							}
 						}
@@ -69,7 +69,7 @@ public class VendingMachineCLI {
 						while(true) {
 							System.out.println();
 							System.out.println("Enter item code: ");
-							String desiredItemCode = scan.next();
+							String desiredItemCode = scan.nextLine();
 
 							inventoryStock.interactWithInventory(desiredItemCode);
 
