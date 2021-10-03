@@ -44,7 +44,7 @@ public class VendingMachineCLI {
 						//Feed Money loop
 						while (true) {
 							System.out.println();
-							System.out.println("Insert Bill or press 0 or enter to go back");
+							System.out.println("Insert Cash | Press 0 or enter to go back");
 							int inputCash = 0;
 							String inputCashString = scan.nextLine();
 
@@ -55,13 +55,13 @@ public class VendingMachineCLI {
 								 if (!(inputCash == 1) && !(inputCash == 2) && !(inputCash == 5) && !(inputCash == 10) && !(inputCash == 20)){
 								 	throw new IllegalArgumentException("Unrealistic dollar value");
 								 }
+								inventoryStock.addMoney(inputCash);
 							}
 							catch (NumberFormatException e) {
 								System.err.println("Not an whole number");
 							} catch (IllegalArgumentException e) {
 								System.err.println(e);
 							}
-							inventoryStock.addMoney(inputCash);
 						}
 					} else if (PurchaseMenuChoice.equals(PURCHASE_MENU_SELECT_PRODUCT)) {
 						// Select Product loop

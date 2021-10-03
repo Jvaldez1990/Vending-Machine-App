@@ -118,10 +118,10 @@ public class Inventory {
 
     public void displayInventoryInConsole() {
         for (Snack snack: snackList) {
-            System.out.print(snack.getLocation()+ " ");
-            System.out.print(snack.getName() + " ");
-            System.out.print(snack.getPrice() + " ");
-            System.out.print(snack.getRemainingQuantity() + "\n");
+            System.out.print(snack.getLocation()+ " | ");
+            System.out.print(snack.getName() + " | $");
+            System.out.print(snack.getPrice() + " | ");
+            System.out.print(snack.getRemainingQuantity() + " remaining \n");
         }
     }
 }
