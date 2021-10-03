@@ -118,7 +118,6 @@ public class Inventory {
         changeString = "Change returned is " + quarters + " quarters, " + dimes + " dimes, " + nickels + " nickels.";
         System.out.println("Change returned is " + quarters + " quarters, " + dimes + " dimes, " + nickels + " nickels.");
         return changeString;
-        //System.exit(1);
     }
 
     public void displayInventoryInConsole() {

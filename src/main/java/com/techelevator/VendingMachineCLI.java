@@ -3,6 +3,7 @@ package com.techelevator;
 import com.techelevator.util.VMLog;
 import com.techelevator.view.Menu;
 import java.io.File;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class VendingMachineCLI {
@@ -43,11 +44,23 @@ public class VendingMachineCLI {
 						//Feed Money loop
 						while (true) {
 							System.out.println();
-							System.out.println("Insert Bill or press 0 to go back");
-							int inputCash = scan.nextInt();
-							if (inputCash == 0)
-								break;
+							System.out.println("Insert Bill or press 0 or enter to go back");
+							int inputCash = 0;
+							String inputCashString = scan.nextLine();
 
+							if (inputCashString.equalsIgnoreCase("0") || inputCashString.isEmpty())
+								break;
+							try {
+								 inputCash = Integer.parseInt(inputCashString);
+								 if (!(inputCash == 1) && !(inputCash == 2) && !(inputCash == 5) && !(inputCash == 10) && !(inputCash == 20)){
+								 	throw new IllegalArgumentException("Unrealistic dollar value");
+								 }
+							}
+							catch (NumberFormatException e) {
+								System.err.println("Not an whole number");
+							} catch (IllegalArgumentException e) {
+								System.err.println(e);
+							}
 							inventoryStock.addMoney(inputCash);
 						}
 					} else if (PurchaseMenuChoice.equals(PURCHASE_MENU_SELECT_PRODUCT)) {
@@ -57,6 +70,7 @@ public class VendingMachineCLI {
 							System.out.println();
 							System.out.println("Enter item code: ");
 							String desiredItemCode = scan.next();
+							
 							inventoryStock.interactWithInventory(desiredItemCode);
 
 							if (!inventoryStock.hasKey(desiredItemCode) ||
@@ -72,7 +86,6 @@ public class VendingMachineCLI {
 						System.exit(1);
 					}
 				}
-
 			} else if (choice.equals(MAIN_MENU_EXIT)) {
 				System.exit(1);
 			}
